@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <title>SGEDA AI 升学工具 | 新加坡·香港·澳洲升学分析</title>
+  <meta name="description" content="AI 驱动的升学分析工具，覆盖新加坡 NUS/NTU、香港八大、澳洲 Go8，包含大学匹配、升学规划、Poly 匹配、AEIS 年级测算等免费工具。" />
+  <link rel="canonical" href="https://tools.sgeda.org.cn/" />
+  <style>
+    :root {
+      --brand: #c62828;
+      --brand-light: #fca5a5;
+      --ink: #1a1a2e;
+      --muted: #6b7280;
+      --wash: #f8f9fa;
+      --line: #e5e7eb;
+      --radius: 16px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+      color: var(--ink); background: #fff; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .header {
+      background: #fff;
+      border-bottom: 2px solid var(--brand);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px clamp(20px, 6vw, 80px);
+      max-width: 1200px; margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-name { font-size: 20px; font-weight: 800; color: var(--brand); letter-spacing: -0.5px; }
+    .brand-sub { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .header-link { font-size: 13px; font-weight: 600; color: var(--muted); }
+    .header-link:hover { color: var(--brand); text-decoration: none; }
+
+    .hero {
+      background: linear-gradient(135deg, #2a1215 0%, #1a0a0c 100%);
+      color: #fff;
+      padding: 56px clamp(20px, 6vw, 80px) 48px;
+      text-align: center;
+    }
+    .hero h1 { font-size: clamp(26px, 5vw, 42px); font-weight: 800; margin-bottom: 14px; }
+    .hero h1 em { font-style: normal; color: var(--brand-light); }
+    .hero p { font-size: 15px; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto; }
+    .hero-tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .hero-tag {
+      padding: 4px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
+      font-size: 12px; font-weight: 600;
+    }
+
+    .section {
+      max-width: 900px; margin: 0 auto;
+      padding: 40px clamp(20px, 6vw, 40px) 16px;
+    }
+    .section-title {
+      font-size: 18px; font-weight: 800;
+      margin-bottom: 16px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--brand);
+    }
+    .section-title em { font-style: normal; color: var(--brand); }
+
+    .tool-grid { display: grid; gap: 10px; margin-bottom: 32px; }
+
+    .tool-card {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px;
+      background: #fff; border: 1.5px solid var(--line);
+      border-radius: 12px; transition: all 0.18s;
+      text-decoration: none; color: var(--ink);
+    }
+    .tool-card:hover {
+      border-color: var(--brand-light);
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .tool-icon {
+      font-size: 28px; flex-shrink: 0;
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--wash); border-radius: 10px;
+    }
+    .tool-info { flex: 1; min-width: 0; }
+    .tool-name { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+    .tool-desc { font-size: 12px; color: var(--muted); }
+    .tool-arrow { font-size: 18px; color: var(--muted); flex-shrink: 0; transition: all 0.18s; }
+    .tool-card:hover .tool-arrow { transform: translateX(4px); color: var(--brand); }
+
+    .badge {
+      display: inline-block; padding: 2px 8px;
+      border-radius: 999px; font-size: 11px; font-weight: 700;
+      background: #fef2f2; color: var(--brand); margin-left: 6px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px clamp(20px, 6vw, 80px);
+      text-align: center; font-size: 12px; color: var(--muted);
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--brand); }
+
+    @media (max-width: 640px) {
+      .tool-card { padding: 14px; gap: 12px; }
+      .tool-icon { width: 44px; height: 44px; font-size: 22px; }
+      .tool-name { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <span class="brand-name">SGEDA</span>
+      <span class="brand-sub">AI 升学工具平台</span>
+    </a>
+    <a href="https://sgeda.org.cn" class="header-link" target="_blank">返回主站 →</a>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>SGEDA <em>AI 升学工具</em></h1>
+  <p>免费 AI 驱动的升学分析，覆盖新加坡、香港、澳洲</p>
+  <div class="hero-tags">
+    <span class="hero-tag">🇸🇬 新加坡</span>
+    <span class="hero-tag">🇭🇰 香港</span>
+    <span class="hero-tag">🇦🇺 澳洲</span>
+    <span class="hero-tag">完全免费</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🇸🇬 新加坡 <em>升学工具</em></div>
+  <div class="tool-grid">
+    <a href="./university-matcher.html" class="tool-card">
+      <span class="tool-icon">🎯</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 大学匹配 — 新加坡公立大学</div>
+        <div class="tool-desc">输入成绩，匹配 NUS NTU SMU 录取概率</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./study-planner.html" class="tool-card">
+      <span class="tool-icon">📋</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 升学规划 — 新加坡</div>
+        <div class="tool-desc">选目标大学+年级，生成个性化留学时间表</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./poly-matcher.html" class="tool-card">
+      <span class="tool-icon">📐</span>
+      <div class="tool-info">
+        <div class="tool-name">AI Poly 匹配 — O-Level → 理工学院</div>
+        <div class="tool-desc">O-Level 成绩计算 ELR2B2，匹配五大理工课程</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./aeis-grade-checker.html" class="tool-card">
+      <span class="tool-icon">📊</span>
+      <div class="tool-info">
+        <div class="tool-name">AEIS 年级测算</div>
+        <div class="tool-desc">输入出生日期，查看可报考 AEIS/S-AEIS 年级</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./sg-masters-matcher.html" class="tool-card">
+      <span class="tool-icon">🎓</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 硕士录取评估 — 新加坡公立大学</div>
+        <div class="tool-desc">输入本科层次+GPA+雅思，评估六所公立大学硕士概率</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./sg-masters-requirements.html" class="tool-card">
+      <span class="tool-icon">📑</span>
+      <div class="tool-info">
+        <div class="tool-name">硕士录取要求数据库 <span class="badge">数据库</span></div>
+        <div class="tool-desc">985/211/双非各层次本科申请新加坡硕士完整要求</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🇭🇰 香港 <em>升学工具</em></div>
+  <div class="tool-grid">
+    <a href="./hk-matcher.html" class="tool-card">
+      <span class="tool-icon">🇭🇰</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 大学匹配 — 香港八大</div>
+        <div class="tool-desc">输入成绩，匹配香港八大名校录取概率</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./hk-planner.html" class="tool-card">
+      <span class="tool-icon">🗓️</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 升学规划 — 香港</div>
+        <div class="tool-desc">量身定制香港大学申请方案与时间表</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🇦🇺 澳洲 <em>升学工具</em></div>
+  <div class="tool-grid">
+    <a href="./au-matcher.html" class="tool-card">
+      <span class="tool-icon">🦘</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 大学匹配 — 澳洲 Go8 + 名校</div>
+        <div class="tool-desc">输入成绩，匹配澳洲八大及 UTS、RMIT 共 10 所名校</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+    <a href="./au-planner.html" class="tool-card">
+      <span class="tool-icon">🗺️</span>
+      <div class="tool-info">
+        <div class="tool-name">AI 升学规划 — 澳洲</div>
+        <div class="tool-desc">量身定制澳洲大学申请方案，含 7 大升学路径</div>
+      </div>
+      <span class="tool-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024–2026 <a href="https://sgeda.org.cn" target="_blank">SGEDA 新加坡国际教育平台</a> · 工具完全免费 · 数据持续更新</p>
+</footer>
+
+</body>
+</html>
