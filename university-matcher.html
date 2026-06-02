@@ -1,6 +1,31 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
+<script>
+/* SGEDA Tool Theme Engine */
+(function(){
+  var p = new URLSearchParams(location.search);
+  var primary = p.get("primary") || "#c62828";
+  var logo    = p.get("logo")    || "";
+  var name    = p.get("name")    || "SGEDA 升学工具";
+  var back    = p.get("back")    || "https://sgeda.org.cn";
+  var backText= p.get("backText")|| "返回主站";
+  document.documentElement.style.setProperty("--brand", primary);
+  document.documentElement.style.setProperty("--brand-light", primary + "80");
+  function apply(){
+    var el;
+    el = document.querySelector(".present-brand-logo,.brand-logo");
+    if(el && logo){ el.src = decodeURIComponent(logo); el.alt = name; }
+    el = document.querySelector(".present-brand-sub,.brand-sub,.brand-name");
+    if(el) el.textContent = name;
+    el = document.querySelector(".present-back,.header-link");
+    if(el){ el.href = decodeURIComponent(back); el.textContent = (backText||"返回") + " →"; }
+    if(p.get("title")) document.title = p.get("title");
+    if(p.get("whitelabel")==="1"){ el=document.querySelector(".present-footer,footer"); if(el)el.style.display="none"; }
+  }
+  document.readyState==="loading" ? document.addEventListener("DOMContentLoaded",apply) : apply();
+})();
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
