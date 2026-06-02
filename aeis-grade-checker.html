@@ -5,7 +5,7 @@
 /* SGEDA Tool Theme Engine */
 (function(){
   var p = new URLSearchParams(location.search);
-  var primary = p.get("primary") || "#c62828";
+  var primary = p.get("primary") || "#2563eb";
   var logo    = p.get("logo")    || "";
   var name    = p.get("name")    || "SGEDA 升学工具";
   var back    = p.get("back")    || "https://sgeda.org.cn";
@@ -34,8 +34,8 @@
 
   <style>
     :root {
-      --brand: #c62828;
-      --brand-light: #fca5a5;
+      --brand: #2563eb;
+      --brand-light: #93c5fd;
       --ink: #1a1a2e;
       --muted: #6b7280;
       --wash: #f8f9fa;
@@ -162,7 +162,7 @@
       border: 1px solid var(--line);
     }
     .result-card.eligible { background: #ecfdf5; border-color: #a7f3d0; }
-    .result-card.not-eligible { background: #fef2f2; border-color: #fecaca; }
+    .result-card.not-eligible { background: #eff6ff; border-color: #bfdbfe; }
     .result-card.alt { background: #f0f9ff; border-color: #bae6fd; }
 
     .rc-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
@@ -216,7 +216,7 @@
     .age-table tr:hover td { background: #e8eaf6; }
     .age-table .level-primary { color: #166534; font-weight: 700; }
     .age-table .level-secondary { color: #5b21b6; font-weight: 700; }
-    .age-table .no { color: #dc2626; font-size: 11px; }
+    .age-table .no { color: #2563eb; font-size: 11px; }
     .age-table .yes { color: #166534; font-size: 11px; font-weight: 600; }
 
     /* ── FAQ ── */
@@ -351,7 +351,7 @@
     /* ── Presentation Mode Overrides ── */
     .present-header {
       background: #fff;
-      border-bottom: 2px solid #c62828;
+      border-bottom: 2px solid #2563eb;
       position: sticky; top: 0; z-index: 100;
     }
     .present-header-inner {
@@ -383,7 +383,7 @@
       color: #6b7280;
       text-decoration: none;
     }
-    .present-back:hover { color: #c62828; }
+    .present-back:hover { color: #2563eb; }
     .present-footer {
       border-top: 1px solid #e5e7eb;
       padding: 20px clamp(20px, 6vw, 80px);
@@ -391,7 +391,7 @@
       font-size: 12px;
       color: #6b7280;
     }
-    .present-footer a { color: #c62828; text-decoration: none; }
+    .present-footer a { color: #2563eb; text-decoration: none; }
     .present-footer a:hover { text-decoration: underline; }
     /* Hide breadcrumb in present mode */
     .breadcrumb { display: none !important; }
